@@ -1,4 +1,4 @@
-# 【全栈之巅】Node.js + Vue.js 全栈开发王dota2手机端官网和管理后台
+# Node.js + Vue.js 全栈开发王dota2手机端官网和管理后台
 > 本项目展示地址 [dota2](https://github.com/Mcguffen/dota2) 
 > https://github.com/Mcguffen/dota2
 > 持续更新中... 敬请关注
