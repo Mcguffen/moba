@@ -2,10 +2,12 @@
   "name": "admin",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://Mcguffen.github.io/dota2",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "deploy": "npm run build&&gh-pages -d build"
   },
   "dependencies": {
     "core-js": "^2.6.5",
