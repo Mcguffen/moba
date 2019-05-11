@@ -10,6 +10,7 @@
 
 ## 二、 管理后台
 1. 基于Element UI的后台管理基础界面搭建
+![image](https://github.com/Mcguffen/dota2/blob/gh-pages/img/后台管理页面.jpg)
 
 1. 创建分类 (多层级)
 1. 分类列表
