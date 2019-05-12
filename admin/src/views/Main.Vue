@@ -7,6 +7,7 @@
             <i class="el-icon-message"></i>内容管理
           </template>
           <el-menu-item-group>
+            <!-- 修改后台管理页面 并创建跳转页面CategoryEdit.vue页面，然后注册路由router.js引入该页面 -->
             <template slot="title">分类</template>
             <el-menu-item index="/categories/create">新建分类</el-menu-item>
             <el-menu-item index="/categories/list">分类列表</el-menu-item>
@@ -30,6 +31,7 @@
       </el-header>
 
       <el-main>
+        <!--  用路由页面代替之前写死的页面 -->
         <router-view></router-view>
         
       </el-main>

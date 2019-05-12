@@ -1,10 +1,13 @@
 <template>
   <div class="about">
     <h1>新建分类</h1>
+      <!--  添加分类表单 横向布局用label-width="120px"  点击保存按钮的时候为了阻止提交跳转页面使用@submit.native.prevent="save"-->
     <el-form label-width="120px" @submit.native.prevent="save">
       <el-form-item label="名称">
+        <!--  双向绑定数据 -->
         <el-input v-model="model.name"></el-input>
       </el-form-item>
+      <!--  添加提交按钮 -->
       <el-form-item>
         <el-button type="primary" native-type="submit">保存</el-button>
       </el-form-item>
@@ -13,16 +16,22 @@
 </template>
 
 <script>
+
 export default {
+    // 使用对象model给input输入框绑定数据
   data(){
     return {
       model: {}
     }
   },
+  // 请求一个接口，提交表单数据。所以需要安装axios，新建一个http.js
   methods: {
     async save(){
+        // this.$http拿来就用 当然我们要先去写接口，所以需要去server端来写接口，完成后端接口后，下面就是发送数据到后端接口
       const res = await this.$http.post('categories', this.model)
+      // 发送完数据 跳转到分类列表/categories/list
       this.$router.push('/categories/list')
+      // 同时跳转的后提示个信息 
       this.$message({
         type: 'success',
         message: '保存成功'
