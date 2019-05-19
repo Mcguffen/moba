@@ -4,6 +4,15 @@
     <h1>{{id ? '编辑' : '新建'}}分类</h1>
       <!--  添加分类表单 横向布局用label-width="120px"  点击保存按钮的时候为了阻止提交跳转页面使用@submit.native.prevent="save"-->
     <el-form label-width="120px" @submit.native.prevent="save">
+      <el-form-item label="上级分类">
+        <!--  双向绑定数据 -->
+        <el-select v-model="model.parent">
+          <el-option v-for="item in parents" :key="item._id"
+            :label="item.name" :value="item._id">
+          </el-option>
+        </el-select>
+
+      </el-form-item>
       <el-form-item label="名称">
         <!--  双向绑定数据 -->
         <el-input v-model="model.name"></el-input>
@@ -26,7 +35,8 @@ export default {
     // 使用对象model给input输入框绑定数据
   data(){
     return {
-      model: {}
+      model: {},
+      parents: []
     }
   },
   // 请求一个接口，提交表单数据。所以需要安装axios，新建一个http.js
@@ -54,9 +64,16 @@ export default {
       const res = await this.$http.get(`categories/${this.id}`)
       this.model = res.data
       },
+    // 获取分类列表
+    async fetchParents(){
+      const res = await this.$http.get(`categories`)
+      this.parents = res.data
+      },
+
     },
     // 在有id属性的页面自动执行获取所有属性
   created(){
+    this.fetchParents()
     this.id && this.fetch()
    }
   
