@@ -31,9 +31,16 @@ export default {
   },
   // 请求一个接口，提交表单数据。所以需要安装axios，新建一个http.js
   methods: {
+    // 新建 修改分类
     async save(){
-        // this.$http拿来就用 当然我们要先去写接口，所以需要去server端来写接口，完成后端接口后，下面就是发送数据到后端接口
-      const res = await this.$http.post('categories', this.model)
+      let res
+      if (this.id) {
+        res = await this.$http.put(`categories/${this.id}`, this.model)
+      } else {
+      // this.$http拿来就用 当然我们要先去写接口，所以需要去server端来写接口，完成后端接口后，下面就是发送数据到后端接口
+        let res = await this.$http.post('categories', this.model)
+      }
+
       // 发送完数据 跳转到分类列表/categories/list
       this.$router.push('/categories/list')
       // 同时跳转的后提示个信息 

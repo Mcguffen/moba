@@ -15,7 +15,16 @@ module.exports = app => {
       // 把客户端发来的表单数据进过模型加工后返回给客户端 至此后端分类接口已经完成，下面就去后台管理页面的前端的/admin/views/CategoryEdit.vue中的save方法中发起请求
       res.send(model)
     })
-      
+
+      // 分类详情页
+    // 使用router的post方法向接口地址/categories 发送数据 那么就需要数据库 mongodb，以及mongoose这个操作数据库的驱动 去/server/index.js中去
+    router.put('/categories/:id', async (req, res) => {
+        // 使用模型创建数据Category.create（）参数也就是数据来源是客户端发来的表单提交数据req.body 要想使用 还得去/server/index.js添加一个中间件
+      const model = await Category.findByIdAndUpdate(req.params.id, req.body)
+      // 把客户端发来的表单数据进过模型加工后返回给客户端 至此后端分类接口已经完成，下面就去后台管理页面的前端的/admin/views/CategoryEdit.vue中的save方法中发起请求
+      res.send(model)
+    })
+        
     // 获取分类列表的接口
       // 使用router的get方法向接口地址/categories 请求数据 那么就需要数据库 mongodb，以及mongoose这个操作数据库的驱动 去/server/index.js中去
       router.get('/categories', async (req, res) => {
