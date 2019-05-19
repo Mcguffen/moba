@@ -8,6 +8,7 @@
             <el-table-column prop = 'name' label = '分类名称' ></el-table-column>
             <el-table-column fixed="right" label="操作" width="180">
                 <template slot-scope="scope">
+                    <!--  给编辑按钮添加点击事件，点击编辑跳转到一个新的编辑页面。地址我们自己定义。`/categories/edit/${scope.row._id}`-->
                 <el-button
                     type="text"
                     size="small"
