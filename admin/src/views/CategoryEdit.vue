@@ -53,7 +53,7 @@ export default {
     async fetch(){
       const res = await this.$http.get(`categories/${this.id}`)
       this.model = res.data
-      }
+      },
     },
     // 在有id属性的页面自动执行获取所有属性
   created(){

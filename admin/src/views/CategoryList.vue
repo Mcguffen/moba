@@ -14,6 +14,7 @@
                     size="small"
                     @click="$router.push(`/categories/edit/${scope.row._id}`)"
                 >编辑</el-button>
+                    <!--  给删除按钮添加点击事件，点击删除按钮触发删除函数 参数是该行的所有信息-->
                 <el-button type="text" size="small" @click="remove(scope.row)">删除</el-button>
                 </template>
             </el-table-column>
@@ -33,6 +34,21 @@ export default {
         async fetch(){
             const res = await this.$http.get('categories')
             this.items = res.data
+        },
+        // 删除函数 参数是row 删除整行内容 建议在删除前添加提示删除框（让用户确认是否删除)
+        async remove(row){
+            this.$confirm(`是否确定要删除分类 "${row.name}"`, "提示", {
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                type: "warning"
+            }).then(async () => {
+                const res = await this.$http.delete(`categories/${row._id}`);
+                this.$message({
+                type: "success",
+                message: "删除成功!"
+                });
+                this.fetch();
+            });
         }
     },
     created(){
