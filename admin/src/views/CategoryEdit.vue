@@ -41,7 +41,17 @@ export default {
         type: 'success',
         message: '保存成功'
       })
-    }
-  }
+    },
+    // 获取分类列表下具体id对应的分类详情页
+    async fetch(){
+      const res = await this.$http.get(`categories/${this.id}`)
+      this.model = res.data
+      }
+    },
+    // 在有id属性的页面自动执行获取所有属性
+  created(){
+    this.id && this.fetch()
+   }
+  
 }
 </script>

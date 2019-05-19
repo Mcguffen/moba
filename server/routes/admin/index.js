@@ -25,6 +25,15 @@ module.exports = app => {
       res.send(items)
     })
 
+    // 获取分类详情页的接口
+      // 使用router的get方法向接口地址/categories 请求数据 那么就需要数据库 mongodb，以及mongoose这个操作数据库的驱动 去/server/index.js中去
+      router.get('/categories/:id', async (req, res) => {
+        // 使用模型创建数据Category.find（）参数也就是数据来源是客户端发来的表单提交数据 要想使用 还得去/server/index.js添加一个中间件
+      const model = await Category.findById(req.params.id)
+      // 后端分类详情页接口已经完成，下面就去后台管理页面的前端的/admin/views/CategoryEdit.vue中的save方法中发起请求
+      res.send(model)
+    })
+
     // 因为外部server/index.js文件引用了我们的函数并传参数app回来，所以我们可以使用app了 将子路由挂在上去
     app.use('/admin/api', router)
   }
