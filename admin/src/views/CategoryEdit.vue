@@ -1,6 +1,7 @@
 <template>
   <div class="about">
-    <h1>新建分类</h1>
+    <!-- 根据有无id来判断是编辑还是新建类 -->
+    <h1>{{id ? '编辑' : '新建'}}分类</h1>
       <!--  添加分类表单 横向布局用label-width="120px"  点击保存按钮的时候为了阻止提交跳转页面使用@submit.native.prevent="save"-->
     <el-form label-width="120px" @submit.native.prevent="save">
       <el-form-item label="名称">
@@ -18,6 +19,10 @@
 <script>
 
 export default {
+  // 接收router.js传来的id 这样可以和路由解偶
+  props: {
+    id: {}
+  },
     // 使用对象model给input输入框绑定数据
   data(){
     return {
