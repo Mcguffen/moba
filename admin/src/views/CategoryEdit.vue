@@ -45,14 +45,14 @@ export default {
     async save(){
       let res
       if (this.id) {
-        res = await this.$http.put(`categories/${this.id}`, this.model)
+        res = await this.$http.put(`rest/categories/${this.id}`, this.model)
       } else {
       // this.$http拿来就用 当然我们要先去写接口，所以需要去server端来写接口，完成后端接口后，下面就是发送数据到后端接口
-        let res = await this.$http.post('categories', this.model)
+        let res = await this.$http.post('rest/categories', this.model)
       }
 
       // 发送完数据 跳转到分类列表/categories/list
-      this.$router.push('/categories/list')
+      this.$router.push('rest/categories/list')
       // 同时跳转的后提示个信息 
       this.$message({
         type: 'success',
@@ -61,12 +61,12 @@ export default {
     },
     // 获取分类列表下具体id对应的分类详情页
     async fetch(){
-      const res = await this.$http.get(`categories/${this.id}`)
+      const res = await this.$http.get(`rest/categories/${this.id}`)
       this.model = res.data
       },
     // 获取分类列表
     async fetchParents(){
-      const res = await this.$http.get(`categories`)
+      const res = await this.$http.get(`rest/categories`)
       this.parents = res.data
       },
 

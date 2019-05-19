@@ -33,7 +33,7 @@ export default {
     // 获取数据 去服务端完成分类列表接口
     methods: {
         async fetch(){
-            const res = await this.$http.get('categories')
+            const res = await this.$http.get('rest/categories')
             this.items = res.data
         },
         // 删除函数 参数是row 删除整行内容 建议在删除前添加提示删除框（让用户确认是否删除)
@@ -43,7 +43,7 @@ export default {
                 cancelButtonText: "取消",
                 type: "warning"
             }).then(async () => {
-                const res = await this.$http.delete(`categories/${row._id}`);
+                const res = await this.$http.delete(`rest/categories${row._id}`);
                 this.$message({
                 type: "success",
                 message: "删除成功!"
