@@ -141,6 +141,7 @@ export default {
         message: "保存成功"
       });
     },
+    // 
     async fetch() {
       const res = await this.$http.get(`rest/heroes/${this.id}`);
       this.model = Object.assign({}, this.model, res.data);
