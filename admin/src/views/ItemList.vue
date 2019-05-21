@@ -1,20 +1,25 @@
 <template>
-  <div>
-    <h1>物品列表</h1>
-    <el-table :data="items">
-      <el-table-column prop="_id" label="ID" width="240"></el-table-column>
-      <el-table-column prop="name" label="物品名称"></el-table-column>
-      <el-table-column fixed="right" label="操作" width="180">
-        <template slot-scope="scope">
-          <el-button
-            type="text"
-            size="small"
-            @click="$router.push(`/items/edit/${scope.row._id}`)"
-          >编辑</el-button>
-          <el-button type="text" size="small" @click="remove(scope.row)">删除</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
+  <div class="about">
+    <h1>{{id ? '编辑' : '新建'}}物品</h1>
+    <el-form label-width="120px" @submit.native.prevent="save">
+      <el-form-item label="名称">
+        <el-input v-model="model.name"></el-input>
+      </el-form-item>
+      <el-form-item label="图标">
+        <el-upload
+          class="avatar-uploader"
+          :action="$http.defaults.baseURL + '/upload'"
+          :show-file-list="false"
+          :on-success="afterUpload"
+        >
+          <img v-if="model.icon" :src="model.icon" class="avatar">
+          <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+        </el-upload>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" native-type="submit">保存</el-button>
+      </el-form-item>
+    </el-form>
   </div>
 </template>
 
