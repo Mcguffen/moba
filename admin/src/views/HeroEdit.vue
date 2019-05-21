@@ -53,7 +53,7 @@
       <el-form-item label="使用技巧">
         <el-input type="textarea" v-model="model.usageTips"></el-input>
       </el-form-item>
-      <el-form-item label="对抗技巧">
+      <el-form-item label="对线技巧">
         <el-input type="textarea" v-model="model.battleTips"></el-input>
       </el-form-item>
       <el-form-item label="团战思路">
