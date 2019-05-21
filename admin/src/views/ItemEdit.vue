@@ -35,6 +35,7 @@ export default {
   },
   methods: {
     afterUpload(res){
+      // vue自带的显示赋值 比如 你向给数据加上一个新的属性
       this.$set(this.model, 'icon', res.url)
       // this.model.icon = res.url
     },
