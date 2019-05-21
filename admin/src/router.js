@@ -7,6 +7,8 @@ import CategoryEdit from './views/CategoryEdit.vue'
 // 引入新创建的分类列表页面 然后去修改写死的CategoryList.vue内容 
 import CategoryList from './views/CategoryList.vue'
 
+import ItemEdit from './views/ItemEdit.vue'
+import ItemList from './views/ItemList.vue'
 
 
 
@@ -23,6 +25,10 @@ export default new Router({
         {path: '/categories/create', component: CategoryEdit},
         {path: '/categories/list', component: CategoryList},
         {path: '/categories/edit/:id', component: CategoryEdit, props: true},
+
+        { path: '/items/create', component: ItemEdit },
+        { path: '/items/edit/:id', component: ItemEdit, props: true },
+        { path: '/items/list', component: ItemList },
 
       ]
     },
