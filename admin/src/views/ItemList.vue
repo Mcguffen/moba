@@ -1,25 +1,25 @@
 <template>
-  <div class="about">
-    <h1>{{id ? '编辑' : '新建'}}物品</h1>
-    <el-form label-width="120px" @submit.native.prevent="save">
-      <el-form-item label="名称">
-        <el-input v-model="model.name"></el-input>
-      </el-form-item>
-      <el-form-item label="图标">
-        <el-upload
-          class="avatar-uploader"
-          :action="$http.defaults.baseURL + '/upload'"
-          :show-file-list="false"
-          :on-success="afterUpload"
-        >
-          <img v-if="model.icon" :src="model.icon" class="avatar">
-          <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-        </el-upload>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" native-type="submit">保存</el-button>
-      </el-form-item>
-    </el-form>
+  <div>
+    <h1>物品列表</h1>
+    <el-table :data="items">
+      <el-table-column prop="_id" label="ID" width="240"></el-table-column>
+      <el-table-column prop="name" label="物品名称"></el-table-column>
+      <el-table-column prop="icon" label="图标">
+        <template slot-scope="scope">
+          <img :src="scope.row.icon" style="height:3rem;">
+        </template>
+      </el-table-column>
+      <el-table-column fixed="right" label="操作" width="180">
+        <template slot-scope="scope">
+          <el-button
+            type="text"
+            size="small"
+            @click="$router.push(`/items/edit/${scope.row._id}`)"
+          >编辑</el-button>
+          <el-button type="text" size="small" @click="remove(scope.row)">删除</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
   </div>
 </template>
 
@@ -36,7 +36,7 @@ export default {
       this.items = res.data;
     },
     remove(row) {
-      this.$confirm(`是否确定要删除物品 "${row.name}"`, "提示", {
+      this.$confirm(`是否确定要删除分类 "${row.name}"`, "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"
@@ -56,28 +56,6 @@ export default {
 };
 </script>
 
-<style>
-.avatar-uploader .el-upload {
-  border: 1px dashed #d9d9d9;
-  border-radius: 6px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-.avatar-uploader .el-upload:hover {
-  border-color: #409eff;
-}
-.avatar-uploader-icon {
-  font-size: 28px;
-  color: #8c939d;
-  width: 178px;
-  height: 178px;
-  line-height: 178px;
-  text-align: center;
-}
-.avatar {
-  width: 178px;
-  height: 178px;
-  display: block;
-}
-</style>
+
+
+
