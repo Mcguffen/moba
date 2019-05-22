@@ -16,6 +16,7 @@
         <el-input v-model="model.title"></el-input>
       </el-form-item>
       <el-form-item label="详情">
+        <!-- 添加上传图片功能 -->
         <vue-editor v-model="model.body" useCustomImageHandler @imageAdded="handleImageAdded"></vue-editor>
       </el-form-item>
       <el-form-item>
