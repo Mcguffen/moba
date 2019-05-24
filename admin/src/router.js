@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
+import Login from './views/Login.vue'
 import Main from './views/Main.vue'
 // 引入新创建的分类创建页面 然后去修改写死的main.vue内容 
 import CategoryEdit from './views/CategoryEdit.vue'
@@ -27,6 +27,7 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
+    { path: '/login', name: 'login', component: Login },
     {
       path: '/',
       name: 'main',
