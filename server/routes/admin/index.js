@@ -55,14 +55,14 @@ module.exports = app => {
         message: '用户不存在'
       })
     }
-    // 2.校验密码
+    // 2.校验密码，第一个参数密码是前端的原文密码，第二个参数是后端散列加密后的密码
     const isValid = require('bcrypt').compareSync(password, user.password)
     if (!isValid) {
       return res.status(422).send({
         message: '密码错误'
       })
     }
-    // 3.返回token
+    // 3.返回token server文件下安装npm i jsonwebtoken
     const jwt = require('jsonwebtoken')
     const token = jwt.sign({ id: user._id}, app.get('secret'))
     res.send({token})
