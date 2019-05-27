@@ -29,6 +29,7 @@ export default {
       const res = await this.$http.post('login', this.model)
       // sessionStorage.token = res.data.token
       localStorage.token = res.data.token
+      // 登陆成功后跳转到后端管理页面首页。
       this.$router.push('/')
       this.$message({
         type: 'success',

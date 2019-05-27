@@ -64,6 +64,7 @@ module.exports = app => {
     }
     // 3.返回token server文件下安装npm i jsonwebtoken
     const jwt = require('jsonwebtoken')
+    // 生成token 通过sign签名方法，
     const token = jwt.sign({ id: user._id}, app.get('secret'))
     res.send({token})
   })

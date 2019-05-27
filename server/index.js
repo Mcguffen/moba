@@ -2,6 +2,8 @@
 const express = require("express")
 
 const app = express()
+// 客户端加密 防篡改
+app.set('secret', 'i2u34y12oi3u4y8')
 // 解决跨域问题
 app.use(require('cors')())
 // 必须使用下面的中间件 /server/routes/admin/index.js中的const model = await Category.create(req.body)才能使用 
