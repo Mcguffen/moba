@@ -5,7 +5,10 @@ module.exports = app => {
   })
 
   // 创建资源
-  router.post('/', async (req, res) => {
+  router.post('/',async (req,res,next) => {
+
+    await next()
+  } ,async (req, res) => {
     const model = await req.Model.create(req.body)
     res.send(model)
   })
@@ -30,10 +33,12 @@ module.exports = app => {
     const items = await req.Model.find().setOptions(queryOptions).limit(10)
     res.send(items)
   })
+  // 资源详情
   router.get('/:id', async (req, res) => {
     const model = await req.Model.findById(req.params.id)
     res.send(model)
   })
+  // 
   app.use('/admin/api/rest/:resource', async (req, res, next) => {
     const modelName = require('inflection').classify(req.params.resource)
     req.Model = require(`../../models/${modelName}`)
