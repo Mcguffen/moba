@@ -16,6 +16,7 @@ http.interceptors.request.use(function (config) {
   // Do something with request error
   return Promise.reject(error);
 });
+// 响应拦截器
 http.interceptors.response.use(res => {
   return res
 }, err => {
@@ -24,7 +25,7 @@ http.interceptors.response.use(res => {
       type: 'error',
       message: err.response.data.message
     })
-    
+    // 如果返回401 跳转登陆页
     if (err.response.status === 401) {
       router.push('/login')
     }
