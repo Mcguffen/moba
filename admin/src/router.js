@@ -2,9 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from './views/Login.vue'
 import Main from './views/Main.vue'
-// 引入新创建的分类创建页面 然后去修改写死的main.vue内容 
 import CategoryEdit from './views/CategoryEdit.vue'
-// 引入新创建的分类列表页面 然后去修改写死的CategoryList.vue内容 
 import CategoryList from './views/CategoryList.vue'
 
 import ItemEdit from './views/ItemEdit.vue'
@@ -25,18 +23,17 @@ import AdminUserList from './views/AdminUserList.vue'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
-    { path: '/login', name: 'login', component: Login },
+    { path: '/login', name: 'login', component: Login, meta: { isPublic: true } },
     {
       path: '/',
       name: 'main',
       component: Main,
-      // 添加子路由
       children: [
-        {path: '/categories/create', component: CategoryEdit},
-        {path: '/categories/list', component: CategoryList},
-        {path: '/categories/edit/:id', component: CategoryEdit, props: true},
+        { path: '/categories/create', component: CategoryEdit },
+        { path: '/categories/edit/:id', component: CategoryEdit, props: true },
+        { path: '/categories/list', component: CategoryList },
 
         { path: '/items/create', component: ItemEdit },
         { path: '/items/edit/:id', component: ItemEdit, props: true },
@@ -58,9 +55,15 @@ export default new Router({
         { path: '/admin_users/edit/:id', component: AdminUserEdit, props: true },
         { path: '/admin_users/list', component: AdminUserList },
 
-
       ]
     },
-    
+
   ]
 })
+router.beforeEach((to, from ,next) => {
+  if (!to.meta.isPublic && !localStorage.token) {
+    return next('/login')
+  }
+  next()
+})
+export default router
