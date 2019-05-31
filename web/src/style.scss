@@ -26,6 +26,7 @@
     'dark': #222,
     'black': #000,
   );
+  // 颜色 背景色
   @each $colorKey, $color in $colors {
     .text-#{$colorKey} {
       color: $color;
@@ -34,7 +35,7 @@
       background-color: $color;
     }
   }
-  // text align 工具类
+  // text align 
   @each $var in (left, center, right) {
     .text-#{$var} {
       text-align: $var;
