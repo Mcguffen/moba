@@ -2,7 +2,7 @@
   <div>
     <swiper :options="swiperOption">
       <swiper-slide>
-        <img class="w-100" src="../assets/images/9df71784492b3f8091df89a08d9e2f8c1553155600.jpg" alt>
+        <img class="w-100" src="../assets/images/f4ea709c54db4a3ff09626ba1624350f1553139042.jpg" alt>
       </swiper-slide>
       <swiper-slide>
         <img class="w-100" src="../assets/images/6f7d4797cd507e421a115b43f64bdbf51551687660.jpg" alt>
