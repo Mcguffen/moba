@@ -11,7 +11,6 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'main',
       component: Main,
       children: [
         { path: '/', name: 'home', component: Home },
