@@ -62,7 +62,7 @@
             <el-dropdown-item>删除</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
-        <span>hanshanyang</span>
+        <span>admin</span>
       </el-header>
 
       <el-main>
