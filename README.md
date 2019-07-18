@@ -1,6 +1,6 @@
-# Node.js + Vue.js 全栈开发dota2手机端官网和管理后台
-> 本项目展示地址 [dota2](https://github.com/Mcguffen/dota2) 
-> https://github.com/Mcguffen/dota2
+# Node.js + Vue.js 全栈开发moba手机端官网和管理后台
+> 本项目展示地址 [moba](https://github.com/Mcguffen/moba) 
+> https://github.com/Mcguffen/moba
 > 持续更新中... 敬请关注
 
 ## 一、 入门
@@ -10,7 +10,7 @@
 
 ## 二、 管理后台
 1. 基于Element UI的后台管理基础界面搭建
-![image](https://github.com/Mcguffen/dota2/blob/gh-pages/img/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E9%A1%B5%E9%9D%A2.jpg?raw=true)
+![image](https://github.com/Mcguffen/moba/blob/gh-pages/img/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E9%A1%B5%E9%9D%A2.jpg?raw=true)
 
 1. 创建分类 (多层级)
 1. 分类列表
