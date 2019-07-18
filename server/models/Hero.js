@@ -3,6 +3,8 @@ const mongoose = require('mongoose')
 const schema = new mongoose.Schema({
   name: { type: String },
   avatar: { type: String },
+  // 背景图
+  banner: { type: String },
   // 外号 
   title: { type: String },
   // 这个英雄属于什么类型 有可能多个类型哦 比如肉盾 先手
