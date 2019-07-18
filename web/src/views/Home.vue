@@ -2,13 +2,16 @@
   <div>
     <swiper :options="swiperOption">
       <swiper-slide>
-        <img class="w-100" src="../assets/images/210794580bb9303653804bb7b482f2a4.jpeg" alt>
+        <img class="w-100" src="../assets/images/1538459038600.jpg" alt>
       </swiper-slide>
       <swiper-slide>
-        <img class="w-100" src="../assets/images/210794580bb9303653804bb7b482f2a4.jpeg" alt>
+        <img class="w-100" src="../assets/images/a4d6a75ddd788149c39c6f07043d8ef7.jpeg" alt>
       </swiper-slide>
       <swiper-slide>
-        <img class="w-100" src="../assets/images/210794580bb9303653804bb7b482f2a4.jpeg" alt>
+        <img class="w-100" src="../assets/images/e6ca6c61670f1dd4953cd99a13a08a91.jpeg" alt>
+      </swiper-slide>
+      <swiper-slide>
+        <img class="w-100" src="../assets/images/e48ca26362954adf447bda85959ff325.jpeg" alt>
       </swiper-slide>
       <div class="swiper-pagination pagination-home text-right px-3 pb-1" slot="pagination"></div>
     </swiper>
