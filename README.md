@@ -10,7 +10,7 @@
 
 ## 二、 管理后台
 1. 基于Element UI的后台管理基础界面搭建
-![image](https://github.com/Mcguffen/moba/blob/gh-pages/img/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E9%A1%B5%E9%9D%A2.jpg?raw=true)
+![gif]()
 
 1. 创建分类 (多层级)
 1. 分类列表
