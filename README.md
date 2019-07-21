@@ -191,6 +191,12 @@ npm run serve
 ```
 效果如下
 
+   ![image](https://github.com/Mcguffen/moba/blob/master/md/vue%E9%A6%96%E9%A1%B5.jpg?raw=true)
+
+
+   ![image](https://github.com/Mcguffen/moba/blob/master/md/npm%20run%20serve.jpg?raw=true)
+
+
 
 ### 基于ElementUI的后台管理基础界面搭建
 * 安装插件ElementUI
@@ -198,6 +204,16 @@ npm run serve
 cd admin
 vue add elenment
 ```
+ 
+![image](https://github.com/Mcguffen/moba/blob/master/md/%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6element.jpg?raw=true)
+
+
+![image](https://github.com/Mcguffen/moba/blob/master/md/%E6%88%90%E5%8A%9F%E5%AE%89%E8%A3%85element%E6%8F%92%E4%BB%B6.jpg?raw=true)
+
+页面效果如下
+
+![image](https://github.com/Mcguffen/moba/blob/master/md/%E6%88%90%E5%8A%9F%E5%AE%89%E8%A3%85element%E6%8F%92%E4%BB%B61.jpg?raw=true)
+
 我们还需要安装一个路由 不然页面没法跳转
 
 * 安装路由
@@ -205,7 +221,13 @@ vue add elenment
 vue add router
 ```
 效果如下
-* 进入官网
+ 
+   ![image](https://github.com/Mcguffen/moba/blob/master/md/%E6%88%90%E5%8A%9F%E5%AE%89%E8%A3%85router.jpg?raw=true)
+
+
+   ![gif](https://github.com/Mcguffen/moba/blob/master/md/router%E6%95%88%E6%9E%9C.gif?raw=true)
+
+* 进入elementUI的官网
 
 https://element.eleme.cn/#/zh-CN/component/container
 
@@ -334,6 +356,8 @@ Main.vue
 ```
 效果如下：
 
+   ![image](https://github.com/Mcguffen/moba/blob/master/md/%E4%BF%AE%E6%94%B9App.vue%E5%90%8E%E6%95%88%E6%9E%9C.jpg?raw=true)
+
 
 * 修改router.js
 router.js
@@ -387,7 +411,9 @@ export default new Router({
 })
 
 ```
-效果
+效果如下
+
+![image](https://github.com/Mcguffen/moba/blob/master/md/Main.vue%E5%BC%95%E5%85%A5router.js.jpg?raw=true)
 
 * 修改App.vue
 App.vue
@@ -428,8 +454,9 @@ App.vue
 </style>
 
 ```
-效果
+效果如下
 
+   ![image](https://github.com/Mcguffen/moba/blob/master/md/%E4%BF%AE%E6%94%B9App.vue%E5%90%8E%E6%95%88%E6%9E%9C.jpg?raw=true)
 
 * 修改样式 去掉边距 
 ```
@@ -447,7 +474,8 @@ html,body{
 </style>
 
 ```
-效果
+效果如下
+   ![gif](https://github.com/Mcguffen/moba/blob/master/md/%E5%8E%BB%E8%BE%B9%E8%B7%9D.jpg?raw=true)
 
 * 修改Main.vue模版的样式
 ```
@@ -457,6 +485,9 @@ html,body{
 ```
 <el-container style="height: 100vh;">
 ```
+
+   ![gif](https://github.com/Mcguffen/moba/blob/master/md/%E4%BF%AE%E6%94%B9Main.vue%E6%A8%A1%E7%89%88%E9%BB%98%E8%AE%A4%E6%A0%B7%E5%BC%8F.jpg?raw=true)
+
 100vh表示屏幕的高度，直接撑满屏幕。
 主界面初始化完成
 
@@ -501,17 +532,17 @@ html,body{
 ### 卡片组件
 ### 列表卡片组件 (list-card, nav, swiper)
 ### 首页新闻资讯-数据录入(+后台bug修复)
-首页新闻资讯-数据接口
-首页新闻资讯-界面展示
-首页英雄列表-提取官网数据
-首页英雄列表-录入数据
-首页英雄列表-界面展示
-新闻详情页
-新闻详情页-完善
-英雄详情页-1-前端准备
-英雄详情页-2-后台编辑
-英雄详情页-3-前端顶部
-英雄详情页-4-完善
+### 首页新闻资讯-数据接口
+### 首页新闻资讯-界面展示
+### 首页英雄列表-提取官网数据
+### 首页英雄列表-录入数据
+### 首页英雄列表-界面展示
+### 新闻详情页
+### 新闻详情页-完善
+### 英雄详情页-1-前端准备
+### 英雄详情页-2-后台编辑
+### 英雄详情页-3-前端顶部
+### 英雄详情页-4-完善
 
 ## 发布和部署(阿里云)
 
