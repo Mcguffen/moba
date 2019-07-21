@@ -4,7 +4,7 @@
 
 - [入门](#入门)
   - [项目介绍](#项目介绍)
-  - [工具安装和环境搭建(nodejs,npm,mongodb)](#工具安装和环境搭建(nodejs,npm,mongodb))
+  - [工具安装和环境搭建(nodejs,npm,mongodb,@vue/cli和nodemon)](#工具安装和环境搭建(nodejs,npm,mongodb,@vue/cli和nodemon))
   - [初始化项目](#初始化项目)
 - [管理后台](#管理后台)
   - [基于Element UI的后台管理基础界面搭建](#基于ElementUI的后台管理基础界面搭建)
@@ -77,7 +77,7 @@ server(后端，服务端)-----------  web(手机端页面)
 
 ``` 
 
-### 工具安装和环境搭建(nodejs,npm,mongodb)
+### 工具安装和环境搭建(nodejs,npm,mongodb,@vue/cli和nodemon)
 * 安装nodejs 
 
     官网下载
@@ -88,6 +88,12 @@ server(后端，服务端)-----------  web(手机端页面)
 
     不要官网下载 
     步骤太繁琐 还是用brew install mongodb吧
+
+* 全局安装 @vue/cli和nodemon
+```
+npm i  -g @vue/cli
+npm i  -g nodemon
+```
 ### 初始化项目
 * 使用github创建一个项目
 * 选nodejs
@@ -95,11 +101,66 @@ server(后端，服务端)-----------  web(手机端页面)
 ```
 mkdir server
 ```
+然后键入命令,初始化npm项目生成package.json文件夹
+```
+npm init -y 
+```
+package.json
+```
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+
+```
+创建入口文件index.js
+修改 package.json文件 自定义脚本s
+```
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "serve": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+
+```
+安装nodemon(nodemon的意思是node+demon,demon是后端常驻进程的含义.)
+```
+npm i  -g nodemon
+```
+然后我们就可以用命令(在server文件下)启动server项目了
+```
+npm run serve
+```
+
+
 * 创建web项目文件夹（web是手机端页面，使用vue组件来构建的）
 
     命令行键入
 ```
 vue create web
+```
+    选择默认选项
+* 创建admin项目文件夹（和上面一样,admin后台管理页面也是用vue）
+
+    命令行键入
+```
+vue create admin
 ```
     选择默认选项
 ## 管理后台
