@@ -76,7 +76,7 @@ server(后端，服务端)-----------  web(手机端页面vue)
  DB 
 
 ``` 
-
+***
 ### 工具安装和环境搭建(nodejs,npm,mongodb,@vue/cli和nodemon)
 * 安装nodejs 
 
@@ -94,6 +94,7 @@ server(后端，服务端)-----------  web(手机端页面vue)
 npm i  -g @vue/cli
 npm i  -g nodemon
 ```
+***
 ### 初始化项目
 * 使用github创建一个项目
 
@@ -114,7 +115,7 @@ cd server
 npm init -y 
 ```
 package.json
-```
+```JavaScript
 {
   "name": "server",
   "version": "1.0.0",
@@ -131,7 +132,7 @@ package.json
 ```
 创建入口文件index.js
 修改 package.json文件 自定义脚本s
-```
+```JavaScript
 {
   "name": "server",
   "version": "1.0.0",
@@ -184,6 +185,7 @@ vue create web
 vue create admin
 ```
     选择默认选项
+***
 ## 管理后台
 ```
 cd admin 
@@ -197,6 +199,7 @@ npm run serve
    ![image](https://github.com/Mcguffen/moba/blob/master/md/npm%20run%20serve.jpg?raw=true)
 
 
+***
 
 ### 基于ElementUI的后台管理基础界面搭建
 * 安装插件ElementUI
@@ -233,20 +236,20 @@ https://element.eleme.cn/#/zh-CN/component/container
 
 直接复制模版代码到admin/src/views下的Main.vue(自己创建)
 需要自己创建 
-```
+```JavaScript
 <template></template>
 ```
 
 然后将我们官网复制的代码中的
-```
+```JavaScript
 <el-container></el-container>
 ```
 部分放入
-```
+```JavaScript
 <template></template>
 ```
 Main.vue
-```
+```JavaScript
 <template>
     <el-container style="height: 500px; border: 1px solid #eee">
   <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
@@ -361,7 +364,7 @@ Main.vue
 
 * 修改router.js
 router.js
-```
+```JavaScript
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
@@ -387,13 +390,13 @@ export default new Router({
 })
 
 ```
-引入Main.vue
-```
+引入Main.vue到路由router.js
+```JavaScript
 import Main from './views/Main.vue'
 ```
 Main代替Home
 Main.vue
-```
+```JavaScript
 import Vue from 'vue'
 import Router from 'vue-router'
 import Main from './views/Main.vue'
@@ -417,7 +420,7 @@ export default new Router({
 
 * 修改App.vue
 App.vue
-```
+```JavaScript
 <template>
   <div id="app">
     <div id="nav">
@@ -443,7 +446,7 @@ App.vue
 删除我们不需要的链接和样式
 修改后
 App.vue
-```
+```JavaScript
 <template>
   <div id="app">
     <router-view/>
@@ -459,7 +462,7 @@ App.vue
    ![image](https://github.com/Mcguffen/moba/blob/master/md/%E4%BF%AE%E6%94%B9App.vue%E5%90%8E%E6%95%88%E6%9E%9C.jpg?raw=true)
 
 * 修改样式 去掉边距 
-```
+```JavaScript
 <template>
   <div id="app">
     <router-view/>
@@ -492,74 +495,691 @@ html,body{
 主界面初始化完成
 
 
+***
+
 ### 创建分类(多层级)
+* 修改管理后台界面 admin/src/views/Main.vue
+Main.vue
+```JavaScript
+<template>
+    <el-container style="height: 100vh;">
+  <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
+    <el-menu :default-openeds="['1', '3']">
+      <el-submenu index="1">
+        <template slot="title"><i class="el-icon-message"></i>导航一</template>
+        <el-menu-item-group>
+          <template slot="title">分组一</template>
+          <el-menu-item index="1-1">选项1</el-menu-item>
+          <el-menu-item index="1-2">选项2</el-menu-item>
+        </el-menu-item-group>
+        <el-menu-item-group title="分组2">
+          <el-menu-item index="1-3">选项3</el-menu-item>
+        </el-menu-item-group>
+        <el-submenu index="1-4">
+          <template slot="title">选项4</template>
+          <el-menu-item index="1-4-1">选项4-1</el-menu-item>
+        </el-submenu>
+      </el-submenu>
+      <el-submenu index="2">
+        <template slot="title"><i class="el-icon-menu"></i>导航二</template>
+        <el-menu-item-group>
+          <template slot="title">分组一</template>
+          <el-menu-item index="2-1">选项1</el-menu-item>
+          <el-menu-item index="2-2">选项2</el-menu-item>
+        </el-menu-item-group>
+        <el-menu-item-group title="分组2">
+          <el-menu-item index="2-3">选项3</el-menu-item>
+        </el-menu-item-group>
+        <el-submenu index="2-4">
+          <template slot="title">选项4</template>
+          <el-menu-item index="2-4-1">选项4-1</el-menu-item>
+        </el-submenu>
+      </el-submenu>
+      <el-submenu index="3">
+        <template slot="title"><i class="el-icon-setting"></i>导航三</template>
+        <el-menu-item-group>
+          <template slot="title">分组一</template>
+          <el-menu-item index="3-1">选项1</el-menu-item>
+          <el-menu-item index="3-2">选项2</el-menu-item>
+        </el-menu-item-group>
+        <el-menu-item-group title="分组2">
+          <el-menu-item index="3-3">选项3</el-menu-item>
+        </el-menu-item-group>
+        <el-submenu index="3-4">
+          <template slot="title">选项4</template>
+          <el-menu-item index="3-4-1">选项4-1</el-menu-item>
+        </el-submenu>
+      </el-submenu>
+    </el-menu>
+  </el-aside>
+  
+  <el-container>
+    <el-header style="text-align: right; font-size: 12px">
+      <el-dropdown>
+        <i class="el-icon-setting" style="margin-right: 15px"></i>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item>查看</el-dropdown-item>
+          <el-dropdown-item>新增</el-dropdown-item>
+          <el-dropdown-item>删除</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+      <span>王小虎</span>
+    </el-header>
+    
+    <el-main>
+      <el-table :data="tableData">
+        <el-table-column prop="date" label="日期" width="140">
+        </el-table-column>
+        <el-table-column prop="name" label="姓名" width="120">
+        </el-table-column>
+        <el-table-column prop="address" label="地址">
+        </el-table-column>
+      </el-table>
+    </el-main>
+  </el-container>
+</el-container>
+
+</template>
+
+<style>
+  .el-header {
+    background-color: #B3C0D1;
+    color: #333;
+    line-height: 60px;
+  }
+  
+  .el-aside {
+    color: #333;
+  }
+</style>
+
+<script>
+  export default {
+    data() {
+      const item = {
+        date: '2016-05-02',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄'
+      };
+      return {
+        tableData: Array(20).fill(item)
+      }
+    }
+  };
+</script>
+```
+改成
+```JavaScript
+<template>
+    <el-container style="height: 100vh;">
+  <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
+    <el-menu :default-openeds="['1', '3']">
+      <el-submenu index="1">
+        <template slot="title"><i class="el-icon-message"></i>内容管理</template>
+        <el-menu-item-group>
+          <template slot="title">分类</template>
+          <el-menu-item index="1-1">新建分类</el-menu-item>
+          <el-menu-item index="1-2">分类列表</el-menu-item>
+        </el-menu-item-group>
+      </el-submenu>
+    </el-menu>
+  </el-aside>
+  
+  <el-container>
+    <el-header style="text-align: right; font-size: 12px">
+      <el-dropdown>
+        <i class="el-icon-setting" style="margin-right: 15px"></i>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item>查看</el-dropdown-item>
+          <el-dropdown-item>新增</el-dropdown-item>
+          <el-dropdown-item>删除</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+      <span>王小虎</span>
+    </el-header>
+    
+    <el-main>
+      <el-table :data="tableData">
+        <el-table-column prop="date" label="日期" width="140">
+        </el-table-column>
+        <el-table-column prop="name" label="姓名" width="120">
+        </el-table-column>
+        <el-table-column prop="address" label="地址">
+        </el-table-column>
+      </el-table>
+    </el-main>
+  </el-container>
+</el-container>
+
+</template>
+
+<style>
+  .el-header {
+    background-color: #B3C0D1;
+    color: #333;
+    line-height: 60px;
+  }
+  
+  .el-aside {
+    color: #333;
+  }
+</style>
+
+<script>
+  export default {
+    data() {
+      const item = {
+        date: '2016-05-02',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄'
+      };
+      return {
+        tableData: Array(20).fill(item)
+      }
+    }
+  };
+</script>
+```
+效果如下
+
+但是，点击侧边栏的新建分类和分类列表后没反应,需要加router对应下面的index进行页面跳转
+```JavaScript
+ <el-menu router :default-openeds="['1', '3']">
+```
+修改后
+```JavaScript
+  <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
+    <el-menu router :default-openeds="['1', '3']">
+      <el-submenu index="1">
+        <template slot="title"><i class="el-icon-message"></i>内容管理</template>
+        <el-menu-item-group>
+          <template slot="title">分类</template>
+          <el-menu-item index="1-1">新建分类</el-menu-item>
+          <el-menu-item index="1-2">分类列表</el-menu-item>
+        </el-menu-item-group>
+      </el-submenu>
+    </el-menu>
+  </el-aside>
+```
+此时点击才页面跳到对应的index的页面
+分类添加router后效果如下（注意地址栏变化）
+
+
+我们最好修改index对应的地址 最好见名知意
+```JavaScript
+  <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
+    <el-menu router :default-openeds="['1', '3']">
+      <el-submenu index="1">
+        <template slot="title"><i class="el-icon-message"></i>内容管理</template>
+        <el-menu-item-group>
+          <template slot="title">分类</template>
+          <el-menu-item index="/categories/create">新建分类</el-menu-item>
+          <el-menu-item index="/categories/list">分类列表</el-menu-item>
+        </el-menu-item-group>
+      </el-submenu>
+    </el-menu>
+  </el-aside>
+```
+地址是跳转了，但是页面还没写。我们去写新建分类和分类列表的页面。
+* 创建新建分类和分类列表的页面
+/admin/src/views/CategoriesEdit.vue
+
+CategoriesEdit.vue
+```JavaScript
+<template>
+    <div class="about">
+        <h1>新建分类</h1>
+    </div>
+</template>
+
+```
+* 到admin/src/router.js引入CategoriesEdit.vue页面
+router.js
+```JavaScript
+import CategoriesEdit from './views/CategoriesEdit.vue'
+```
+* 我们需要改变一下Main.vue 我们希望点击新建分类的时候不是整个页面改变而是右边内容改变
+Main.vue
+```JavaScript
+<template>
+    <el-container style="height: 100vh;">
+  <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
+    <el-menu router :default-openeds="['1', '3']">
+      <el-submenu index="1">
+        <template slot="title"><i class="el-icon-message"></i>内容管理</template>
+        <el-menu-item-group>
+          <template slot="title">分类</template>
+          <el-menu-item index="/categories/create">新建分类</el-menu-item>
+          <el-menu-item index="/categories/list">分类列表</el-menu-item>
+        </el-menu-item-group>
+      </el-submenu>
+    </el-menu>
+  </el-aside>
+  
+  <el-container>
+    <el-header style="text-align: right; font-size: 12px">
+      <el-dropdown>
+        <i class="el-icon-setting" style="margin-right: 15px"></i>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item>查看</el-dropdown-item>
+          <el-dropdown-item>新增</el-dropdown-item>
+          <el-dropdown-item>删除</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+      <span>王小虎</span>
+    </el-header>
+    
+    <el-main>
+      <el-table :data="tableData">
+        <el-table-column prop="date" label="日期" width="140">
+        </el-table-column>
+        <el-table-column prop="name" label="姓名" width="120">
+        </el-table-column>
+        <el-table-column prop="address" label="地址">
+        </el-table-column>
+      </el-table>
+    </el-main>
+  </el-container>
+</el-container>
+
+</template>
+```
+我们把
+```JavaScript
+<el-table></el-table>
+```
+内容注释
+换成路由容器
+```JavaScript
+<router-view></router-view>
+```
+
+```JavaScript
+        <el-container>
+            <el-header style="text-align: right; font-size: 12px">
+                <el-dropdown>
+                    <i class="el-icon-setting" style="margin-right: 15px"></i>
+                    <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item>查看</el-dropdown-item>
+                    <el-dropdown-item>新增</el-dropdown-item>
+                    <el-dropdown-item>删除</el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
+            <span>王小虎</span>
+            </el-header>           
+            <el-main>
+                <router-view></router-view>
+                <!-- <el-table :data="tableData">
+                    <el-table-column prop="date" label="日期" width="140">
+                    </el-table-column>
+                    <el-table-column prop="name" label="姓名" width="120">
+                    </el-table-column>
+                    <el-table-column prop="address" label="地址">
+                    </el-table-column>
+                </el-table> -->
+            </el-main>
+        </el-container>
+```
+这样我们去router.js添加子路由
+* 添加子路由
+router.js
+```JavaScript
+import Vue from 'vue'
+import Router from 'vue-router'
+import Main from './views/Main.vue'
+import CategoriesEdit from './views/CategoriesEdit.vue'
+
+Vue.use(Router)
+
+export default new Router({
+  routes: [
+    {
+      path: '/',
+      name: 'main',
+      component: Main,
+      children:[
+        { path: '/categories/create', component: CategoriesEdit }
+    ]
+    },
+  ]
+})
+
+```
+同理 分类列表 也是这么做
+下面我来完善下新建分类页面 添加一个input输入框
+CategoriesEdit.vue
+```JavaScript
+<template>
+    <div class="about">
+        <h1>新建分类</h1>
+        <el-form>
+            <el-form-item label="名称">
+                <el-input>
+                </el-input>
+            </el-form-item>
+        </el-form>
+
+    </div>
+</template>
+```
+效果如图
+
+* 添加button提交按钮
+```JavaScript
+<template>
+    <div class="about">
+        <h1>新建分类</h1>
+        <el-form>
+            <el-form-item label="名称">
+                <el-input>
+                </el-input>
+            </el-form-item>
+            <el-form-item>
+                <!--  native-type="submit" 原生按钮为提交-->
+                <el-button type="primary" native-type="submit">保存</el-button>
+            </el-form-item>
+        </el-form>
+
+    </div>
+</template>
+```
+效果如图
+
+如果希望表单是横向布局
+* 表单横向布局 
+
+添加下面代码
+```JavaScript
+<el-form label-width="120px">
+```
+CategoriesEdit.vue
+```JavaScript
+<template>
+    <div class="about">
+        <h1>新建分类</h1>
+        <el-form label-width="120px">
+            <el-form-item label="名称">
+                <el-input>
+                </el-input>
+            </el-form-item>
+            <el-form-item>
+                <!--  native-type="submit" 原生按钮为提交-->
+                <el-button type="primary" native-type="submit">保存</el-button>
+            </el-form-item>
+        </el-form>
+
+    </div>
+</template>
+
+```
+效果如图
+* input标签绑定数据
+script
+```JavaScript
+<script>
+export default {
+    data(){
+        return {
+            model:{}
+        }
+    }
+}
+</script>
+```
+input标签 添加如下代码
+```JavaScript
+                <el-input v-model="model.name">
+                </el-input>
+```
+CategoriesEdit.vue
+```JavaScript
+<template>
+    <div class="about">
+        <h1>新建分类</h1>
+        <el-form label-width="120px">
+            <el-form-item label="名称">
+                <el-input v-model="model.name">
+                </el-input>
+            </el-form-item>
+            <el-form-item>
+                <!--  native-type="submit" 原生按钮为提交-->
+                <el-button type="primary" native-type="submit">保存</el-button>
+            </el-form-item>
+        </el-form>
+
+    </div>
+</template>
+
+<script>
+export default {
+    data(){
+        return {
+            model:{}
+        }
+    }
+}
+</script>
+
+```
+input双向数据绑定效果如图
+
+* 点击保存 实现submit提交事件
+
+el-form表单添加 @submit事件
+```
+<el-form label-width="120px" @submit="native.submit.prevent=save()">
+```
+save()
+```JavaScript
+<script>
+export default {
+    data(){
+        return {
+            model:{}
+        }
+    },
+    methods:{
+        save(){
+            //请求接口，提交数据
+            
+        }
+    }
+}
+</script>
+```
+* 请求接口 需要安装axios
+
+```
+cd admin
+npm i axios
+```
+
+* 创建http.js,单独一个http.js文件引入axios,并导出供main.js使用
+/admin/src/http.js
+```JavaScript
+import axios from 'axios'
+
+// 创建实例
+const http = axios.create({
+    // 将接口放入统一一个路径去
+    baseURL : "http://localhost:3000/admin/api"
+})
+
+// 导出文件
+export default http
+```
+
+* main.js引入http
+admin/src/main.js
+```JavaScript
+import Vue from 'vue'
+import App from './App.vue'
+import './plugins/element.js'
+import router from './router'
+
+Vue.config.productionTip = false
+
+// 引入http
+import http from './http'
+// 加载到vue实例属性上
+Vue.prototype.$http = http
+
+new Vue({
+  router,
+  render: h => h(App)
+}).$mount('#app')
+```
+这么挂载 Vue属性的好处在于 任何需要http的时候 只要this.http就可以使用
+比如save()方法 为了请求接口 提交数据 就可以使用
+
+* save()使用http
+admin/src/CategoriesEdit.vue
+```JavaScript
+<script>
+export default {
+    data(){
+        return {
+            model:{}
+        }
+    },
+    methods:{
+        save(){
+        //请求接口，提交数据 请求方法用post()
+            this.http.post()
+        }
+    }
+}
+</script>
+```
+下面就要写接口了
+写接口就要去服务端 server
+
+***
+
 ### 分类列表
+* 创建分类列表页面
+/admin/src/views/CategoriesList.vue
+
+CategoriesList.vue
+```JavaScript
+
+```
+***
+
 ### 修改分类
+***
+
 ### 删除分类
+***
 
 ### 通用CRUD接口
+***
 
 ### 装备管理
+***
 ### 图片上传和文件管理(multer)
+***
 
 
 
 ### 英雄管理
+***
 ### 编辑英雄
+***
 ### 装备的多选(el-select,multiple)
+***
 ### 技能的编辑
 
 ![gif](https://github.com/Mcguffen/moba/blob/master/md/%E8%8B%B1%E9%9B%84%E5%B1%9E%E6%80%A7%E7%BC%96%E8%BE%9###gif?raw=true)
-
+***
 ### 文章管理
+***
 ### 富文本编辑器(quill)
+***
 
 ### 首页广告管理
+***
 
 ### 管理员账号管理(bcrypt)
+***
 ### 登录页面
+***
 ### 登录接口(jwt,jsonwebtoken)
+***
 ### 服务端登录校验
+***
 ### 客户端路由限制(beforeEach,meta)
+***
 
 ## 移动端网站
+***
 
 ### 开发服务端接口
+***
 ### 考虑整体样式
+***
 ### 使用字体图标(iconfont)
+***
 ### 首页顶部轮播图片(swiper)
+***
 ### 考虑通用组件(SFC)
+***
 ### 卡片组件
+***
 ### 列表卡片组件 (list-card, nav, swiper)
+***
 ### 首页新闻资讯-数据录入(+后台bug修复)
+***
 ### 首页新闻资讯-数据接口
+***
 ### 首页新闻资讯-界面展示
+***
 ### 首页英雄列表-提取官网数据
+***
 ### 首页英雄列表-录入数据
+***
 ### 首页英雄列表-界面展示
+***
 ### 新闻详情页
+***
 ### 新闻详情页-完善
+***
 ### 英雄详情页-1-前端准备
+***
 ### 英雄详情页-2-后台编辑
+***
 ### 英雄详情页-3-前端顶部
+***
 ### 英雄详情页-4-完善
+***
 
 ## 发布和部署(阿里云)
-
+***
 ### 生产环境编译
+***
 ### 购买域名和服务器
 * 购买域名
 
 * 购买服务器
-
+***
 ### 域名解析
+***
 ### Nginx安装和配置
+***
 ### MongoDB数据库的安装和配置
+***
 ### git安装配置ssh-key
+***
 ### Node.js安装配置淘宝镜像
+***
 ### 拉取代码,安装pm2并启动项目
+***
 ### 配置Nginx的反向代理
+***
 
 ## 进阶
+***
 ### 使用免费SSL证书启用HTTPS安全连接
+***
 ### 使用阿里云OSS云存储存放上传文件
+***
