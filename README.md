@@ -682,6 +682,8 @@ Main.vue
 ```
 效果如下
 
+   ![image](https://github.com/Mcguffen/moba/blob/master/md/%E4%BF%AE%E6%94%B9%E7%AE%A1%E7%90%86%E5%90%8E%E5%8F%B0%E9%A1%B5%E9%9D%A2-%E6%96%B0%E5%BB%BA%E5%88%86%E7%B1%BB%E5%92%8C%E5%88%86%E7%B1%BB%E5%88%97%E8%A1%A8.jpg?raw=true)
+
 但是，点击侧边栏的新建分类和分类列表后没反应,需要加router对应下面的index进行页面跳转
 ```JavaScript
  <el-menu router :default-openeds="['1', '3']">
@@ -704,8 +706,10 @@ Main.vue
 此时点击才页面跳到对应的index的页面
 分类添加router后效果如下（注意地址栏变化）
 
+   ![gif](https://github.com/Mcguffen/moba/blob/master/md/%E5%88%86%E7%B1%BB%E6%B7%BB%E5%8A%A0router.gif?raw=true)
 
 我们最好修改index对应的地址 最好见名知意
+* 修改路由地址
 ```JavaScript
   <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
     <el-menu router :default-openeds="['1', '3']">
@@ -788,7 +792,7 @@ Main.vue
 ```JavaScript
 <el-table></el-table>
 ```
-内容注释
+内容
 换成路由容器
 ```JavaScript
 <router-view></router-view>
@@ -809,14 +813,6 @@ Main.vue
             </el-header>           
             <el-main>
                 <router-view></router-view>
-                <!-- <el-table :data="tableData">
-                    <el-table-column prop="date" label="日期" width="140">
-                    </el-table-column>
-                    <el-table-column prop="name" label="姓名" width="120">
-                    </el-table-column>
-                    <el-table-column prop="address" label="地址">
-                    </el-table-column>
-                </el-table> -->
             </el-main>
         </el-container>
 ```
@@ -864,6 +860,8 @@ CategoriesEdit.vue
 ```
 效果如图
 
+   ![gif](https://github.com/Mcguffen/moba/blob/master/md/%E5%AE%8C%E5%96%84CategoriesEdit.vue%E9%A1%B5%E9%9D%A2.jpg?raw=true)
+
 * 添加button提交按钮
 ```JavaScript
 <template>
@@ -884,6 +882,7 @@ CategoriesEdit.vue
 </template>
 ```
 效果如图
+   ![gif](https://github.com/Mcguffen/moba/blob/master/md/%E6%B7%BB%E5%8A%A0button%E6%8F%90%E4%BA%A4%E6%8C%89%E9%92%AE.jpg?raw=true)
 
 如果希望表单是横向布局
 * 表单横向布局 
@@ -913,6 +912,9 @@ CategoriesEdit.vue
 
 ```
 效果如图
+
+   ![image](https://github.com/Mcguffen/moba/blob/master/md/%E6%A8%AA%E5%90%91%E5%B8%83%E5%B1%80.jpg?raw=true)
+
 * input标签绑定数据
 script
 ```JavaScript
@@ -961,7 +963,9 @@ export default {
 </script>
 
 ```
-input双向数据绑定效果如图
+input双向数据绑定效果如图:
+
+  ![gif](https://github.com/Mcguffen/moba/blob/master/md/input%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A.gif?raw=true)
 
 * 点击保存 实现submit提交事件
 
