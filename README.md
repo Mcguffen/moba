@@ -1170,6 +1170,22 @@ CategoriesList.vue
 ### 域名解析
 ***
 ### Nginx安装和配置
+* 为什么要安装nginx?
+nginx是web服务器,部署服务器不像我们本地开发，开个端口,服务器统一使用80默认端口.
+因为一台服务器可能部署很多域名.所以需要一个统一的80接口，域名可以分1级 2级来区别不同.
+* 安装Nginx
+看看安装没安装（第一次肯定没有，需要下面命令更新后才能看到）
+然后更新下软件安装包管理程序(ubuntu 是 apt centos是yum mac是homebrew brew)，安装nginx
+```
+apt show nginx
+apt update
+apt show nginx
+apt install nginx -y
+```
+安装完成后，我们的域名和ip就可以访问了 效果如下：
+
+
+
 ***
 ### MongoDB数据库的安装和配置
 ***
