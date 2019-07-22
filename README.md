@@ -1184,7 +1184,7 @@ apt install nginx -y
 ```
 安装完成后，我们的域名和ip就可以访问了 效果如下：
 
-![gif](https://github.com/Mcguffen/moba/blob/master/md/%E8%8B%B1%E9%9B%84%E5%B1%9E%E6%80%A7%E7%BC%96%E8%BE%9###gif?raw=true)
+![image](https://github.com/Mcguffen/moba/blob/master/md/nginx%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90%20.jpg?raw=true)
 
 ***
 
