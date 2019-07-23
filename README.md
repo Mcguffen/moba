@@ -1190,6 +1190,13 @@ apt install nginx -y
 
 ***
 ### MongoDB数据库的安装和配置
+
+* 安装mongodb
+```
+apt show mongodb
+apt update
+apt install  -y mongodb-server
+```
 ***
 ### git安装配置ssh-key
 ***
