@@ -1502,6 +1502,11 @@ cat /root/.ssh/id_rsa.pub
 ```
 然后复制公钥内容到github上配置，设置中找到配置公钥的地方 如图
 
+![image](https://github.com/Mcguffen/moba/blob/master/md/%E9%85%8D%E7%BD%AE%E5%85%AC%E9%92%A5.jpg?raw=true)
+
+![image](https://github.com/Mcguffen/moba/blob/master/md/ssh%20keys.jpg?raw=true)
+完成
+
 
 ***
 ### Node.js安装配置淘宝镜像
