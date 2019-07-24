@@ -1488,6 +1488,21 @@ apt install  -y mongodb-server
 ```
 ***
 ### git安装配置ssh-key
+* 安装git
+主要为了方便从github下拉代码,便于部署。
+```JavaScipt
+apt install -y git
+```
+* 配置ssh-key
+主要为了从github下拉代码方便,一路回车就好.会生成一个key.然后我们复制key放到线上去。
+它是一个公钥.
+```JavaScipt
+ssh-keygen
+cat /root/.ssh/id_rsa.pub
+```
+然后复制公钥内容到github上配置，设置中找到配置公钥的地方 如图
+
+
 ***
 ### Node.js安装配置淘宝镜像
 ***
