@@ -1510,6 +1510,32 @@ cat /root/.ssh/id_rsa.pub
 
 ***
 ### Node.js安装配置淘宝镜像
+* 配置淘宝镜像
+```JavaScript
+npm config set registry https://registry.npm.taobao.org 
+npm info underscore // 验证是否成功配置
+```
+* 安装node并配置淘宝镜像（速度快）
+```JavaScript
+apt install -y nodejs
+apt install -y npm
+nodejs -v
+npm -v
+```
+版本比较低 我们安装一个nodejs的包管理工具 n
+* 安装一个升级node的版本的 包管理工具 当然可以随便切换版本 n
+```JavaScript
+npm i -g n
+n latest // 安装最新的node版本 需要退出重新进来就可以看到node是最近版本
+```
+* 安装一个npm镜像地址切换工具 nrm(可以不装 因为前面我们已经用taobao镜像地址了够用)
+```JavaScript
+https://www.cnblogs.com/sghy/p/6840925.html
+
+```
+
+
+
 ***
 ### 拉取代码,安装pm2并启动项目
 ***
