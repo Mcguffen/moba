@@ -1341,6 +1341,10 @@ export default {
             })
 ```
 下面我们就试试
+效果如下
+
+![image](https://github.com/Mcguffen/moba/blob/master/md/%E4%BF%9D%E5%AD%98%E6%88%90%E5%8A%9F.gif?raw=true)
+
 我们的分类分两级  
 比如    （1级）  新闻资讯
 （2级） 热门 新闻 公告 活动 赛事
