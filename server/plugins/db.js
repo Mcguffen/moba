@@ -7,6 +7,5 @@ module.exports = app => {
       useNewUrlParser: true
       // 数据库链接上后 就需要模型 同样新建/server/models/Category.js文件单独管理
     })
-    // 安装 npm i require-all插件 引用分类和子分类等关联关系 就是把models文件夹下所有js文件引用了一遍
-    require('require-all')(__dirname + '/../models')
+
   }

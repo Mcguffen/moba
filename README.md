@@ -971,7 +971,7 @@ input双向数据绑定效果如图:
 
 el-form表单添加 @submit事件
 ```
-<el-form label-width="120px" @submit="native.submit.prevent=save()">
+<el-form label-width="120px"  @submit.native.prevent="save">
 ```
 save()
 ```JavaScript
@@ -1049,7 +1049,7 @@ export default {
     methods:{
         save(){
         //请求接口，提交数据 请求方法用post()
-            this.http.post()
+            this.$http.post()
         }
     }
 }
@@ -1058,7 +1058,292 @@ export default {
 下面就要写接口了
 写接口就要去服务端 server
 
+* 创建分类服务端
+```JavaScript
+cd server
+npm run serve
+```
 
+* 安装必要的模块 express@next(下一个版本) mongoose(操作数据库) cors（解决跨域）
+```JavaScript
+npm i express@next mongoose cors
+```
+然后完成 server/index.js
+* 完成后端分类接口
+index.js
+```JavaScript
+const express = require("express") // 引入安装的express 模块
+
+// 创建express实例
+const app = express()
+
+// 监听3000端口 回调函数执行
+app.listen(3000,()=>{
+    console.log("http://localhost:3000")
+});
+```
+然后我们运行发现
+```
+npm run serve
+```
+接下来去完成分类相关路由,因为我们路由很多,我们不在index.js里面写，单独一个文件写.
+* 分类相关的路由 
+
+创建routes/admin/index.js文件夹
+```JavaScript
+cd server
+touch routes
+cd routes
+touch admin
+cd admin 
+touch index.js
+```
+表示后端路由
+routes/admin/index.js
+index.js
+```JavaScript
+// 这个函数接受一个app 对象 
+module.export = app => {
+
+}
+```
+这个路由的使用方法就是在server/index.js引入
+```JavaScript
+// 引入路由 并传app对象 这样在server/routes/admin里面就有一个app可以用
+require("./routes/admin")(app)
+```
+server/index.js
+```JavaScript
+const express = require("express") // 引入安装的express 模块
+
+// 创建express实例
+const app = express()
+
+// 引入路由 并传app对象 这样在server/routes/admin里面就有一个app可以用
+require("./routes/admin")(app)
+
+// 监听3000端口 回调函数执行
+app.listen(3000,()=>{
+    console.log("http://localhost:3000")
+});
+```
+然后 
+我们回到
+server/routes/admin/index.js
+```JavaScript
+// 这个函数接受一个app 对象 
+module.export = app => {
+    const express = require("express")
+    // express子路由 有增删改查的很多东西
+    const router = express.Router()
+    // post方法
+    router.post("categories",async(req,res)=>{
+        //把数据存进去 需要用到数据库
+    })
+    // 然后挂载到下面的路由地址上
+    app.use("/admin/api",router)
+}
+```
+因为post方法是提交数据到数据库 
+* 引入数据库 单独文件夹 /server/plugins
+```JavaScript
+cd server
+touch plugins
+cd pliugins
+touch db.js
+```
+db.js
+```JavaScript
+// 这种写法要习惯 下面就是数据库插件的写法
+module.exports = app => {
+    const mongoose = require("mongoose")
+    // 使用 mongoose 链接数据库非常方便，链接的数据库里面即使没有moba这个数据库会自动创建，有的花直接链接。
+    mongoose.connect('mongodb://127.0.0.1:27017/moba', {
+        // 下面的参数必须带上
+      useNewUrlParser: true
+      // 数据库链接上后 就需要模型 同样新建/server/models/Category.js文件单独管理
+    })
+  }
+```
+数据库插件完成之后,需要数据模型
+* 创建数据模型
+```JavaScript
+cd server
+touch models
+cd models
+touch Category.js
+```
+Category.js
+```JavaScript
+// 数据库链接上后 就需要模型
+const mongoose = require('mongoose')
+// schema定义模型的字段又那些
+const schema = new mongoose.Schema({
+    // 定义字段
+  name: { type: String },
+})
+// 导出模型供/server/routes/admin/index.js使用
+module.exports = mongoose.model('Category', schema)
+```
+这样模型就创建好了 Category是mongoose的模型 哪里需要就引用
+```JavaScript
+    // 引用Category.js这个模型
+    const Category = require("../../models/Category")
+```
+所以回到/server/routes/admin/index.js
+index.js
+```JavaScript
+// 这个函数接受一个app 对象 
+module.exports = app => {
+    const express = require("express")
+    // express子路由 有增删改查的很多东西
+    const router = express.Router()
+    // 引用Category.js这个模型
+    const Category = require("../../models/Category")
+    // post方法
+    router.post("categories",async(req,res)=>{
+
+    })
+    // 然后挂载到下面的路由地址上
+    app.use("/admin/api",router)
+}
+```
+模型引用后,我们去创建数据
+* 模型引用后,我们去创建数据。
+```JavaScript
+    // post方法
+    router.post("categories",async(req,res)=>{
+        //把数据存进去 需要用到数据库 
+        // 创建数据 数据来源是客户端提交来的数据 async和await配套使用
+        await Category.create(req.body)
+        // 发信息给客户端 表示数据提交完成
+        res.send(model)
+    })
+```
+所以回到/server/routes/admin/index.js
+index.js
+```JavaScript
+// 这个函数接受一个app 对象 
+module.exports = app => {
+    const express = require("express")
+    // express子路由 有增删改查的很多东西
+    const router = express.Router()
+    // 引用Category.js这个模型
+    const Category = require("../../models/Category")
+    // post方法
+    router.post("categories",async(req,res)=>{
+        //把数据存进去 需要用到数据库
+        // 创建数据 数据来源是客户端提交来的数据 async和await配套使用
+        await Category.create(req.body)
+        // 发信息给客户端 表示数据提交完成
+        res.send(model)
+    })
+    // 然后挂载到下面的路由地址上
+    app.use("/admin/api",router)
+}
+```
+要想接受客服端发来的req.body还需要去server/index.js去引用express.json和cors(跨域)
+* 引用之前安装的模块express.json和cors
+```JavaScript
+app.use(require("cors")())
+// 加一个中间件 json
+app.use(express.json())
+```
+回到server/index.js引用
+```JavaScript
+cd server/index.js
+```
+index.js
+```JavaScript
+const express = require("express") // 引入安装的express 模块
+
+// 创建express实例
+const app = express()
+// 解决跨域问题
+app.use(require("cors")())
+// 加一个中间件 json
+app.use(express.json())
+// 引入路由 并传app对象 这样在server/routes/admin里面就有一个app可以用
+require("./routes/admin/index")(app)
+require("./plugins/db")(app)
+
+// 监听3000端口 回调函数执行
+app.listen(3000,()=>{
+    console.log("http://localhost:3000")
+});
+```
+
+至此分类接口已经完成 /admin/api/categories
+
+下面去前端发起接口请求.
+
+* 前端发起分类接口请求
+```JavaScript
+cd admin/src/views/CategoriesEdit.vue
+```
+CategoriesEdit.vue
+```JavaScript
+<script>
+export default {
+    data(){
+        return {
+            model:{}
+        }
+    },
+    methods:{
+        save(){
+            //请求接口，提交数据 请求方法用post()
+            this.$http.post()
+        }
+    }
+}
+</script>
+
+```
+我们接发起请求
+```JavaScript
+<script>
+export default {
+    data(){
+        return {
+            model:{}
+        }
+    },
+    methods:{
+        async save(){
+            //请求接口，提交数据 请求方法用post()
+            const res = await this.$http.post("categories",this.model)
+        }
+    }
+}
+</script>
+
+```
+这种异步回调用同步的方式写 就用async加awiat 
+平常都用.then（） 
+一般前端发了请求得到回应后,我们跳转到新的页面.比如这
+创建分类页面发送求情后 自动挑战到分类列表页面
+
+* 跳转分类列表页面
+
+```JavaScript
+            // 跳转到分类列表页面
+            this.$router.push("/categories/list")
+
+```
+
+跳转成功后,提示成功消息
+```JavaScript
+            // 提示成功消息 elementui 提供的方法
+            this.$message({
+                type:'success',
+                message:'保存成功啦!'
+            })
+```
+下面我们就试试
+我们的分类分两级  
+比如    （1级）  新闻资讯
+（2级） 热门 新闻 公告 活动 赛事
 ***
 
 ### 分类列表
