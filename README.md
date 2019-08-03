@@ -1538,8 +1538,30 @@ https://www.cnblogs.com/sghy/p/6840925.html
 
 ***
 ### 拉取代码,安装pm2并启动项目
+* 上传代码到github或者码云(国内速度快)
+* 下拉代码
+安装完nginx会生成文件夹 /var/www/html 也可以自己创建一个文件夹
+根目录下创建/data目录
+```
+mkdir /data
+cd /data
+git clone 项目地址
+cd /moba
+cd /server
+npm i
+npm i pm2 -g
+pm2 start index.js --name(避免重复名字)
+pm2 list
+pm2 logs index
+```
 ***
 ### 配置Nginx的反向代理
+* 反向代理就是 别人访问我们的服务器 我的nginx服务器 访问nodejs服务器（比如3000端口）
+* 在vscode安装插件 romote-ssh
+因为在服务器中用命令行 或者 ssh链接到服务器的命令行 操作很麻烦 因为要改很多配置
+所以安装这个vscode插件 romote-ssh
+安装后 vscode编辑器就多来一个 图标 我们就可以向管理本地的文件一样 管理服务器文件
+w
 ***
 
 ## 进阶
